@@ -9,7 +9,21 @@ public class Pattern {
 		 *
 		 */
 		
-
+for(int i=100; i>=90; i--){
+	System.out.print(i);
+}
+for(int i=98; i >=80; i-=2){
+	System.out.println(i);
+}
+for(int i=78; i >=70; i-=2){
+	System.out.println(i);
 
 	}
+for(int i=67; i >=50; i-=2){
+
+	if((i%2)!=0){
+			System.out.println(i);
+
+		}
 }
+

@@ -73,6 +73,7 @@ public class Sort {
     }
     void merge(int arr[], int l, int m, int r)
     {
+
         int i, j, k;
         int n1 = m - l + 1;
         int n2 =  r - m;
@@ -91,76 +92,153 @@ public class Sort {
         while (i < n1 && j < n2)
         {
             if (L[i] <= R[j])
-            {
-                arr[k] = L[i];
-                i++;
-            }
-            else
-            {
-                arr[k] = R[j];
-                j++;
-            }
-            k++;
+        {
+        arr[k] = L[i];
+        i++;
+        }
+        else
+        {
+        arr[k] = R[j];
+        j++;
+        }
+        k++;
         }
 
         while (i < n1)
         {
-            arr[k] = L[i];
-            i++;
-            k++;
+        arr[k] = L[i];
+        i++;
+        k++;
         }
 
         while (j < n2)
         {
-            arr[k] = R[j];
-            j++;
-            k++;
+        arr[k] = R[j];
+        j++;
+        k++;
+        }
+
+
+    void mergeSort(int [] array, int l, int r){
+       int [] list = array;
+        //implement here
+        if (l < r)
+        {
+            // Same as (l+r)/2, but avoids overflow for
+            // large l and h
+            int m = l+(r-l)/2;
+
+            // Sort first and second halves
+            mergeSort(arr, l, m);
+            mergeSort(arr, m+1, r);
+
+            merge(arr, l, m, r);
+       }
+        return list;
+    }
+
+
+
+
+    public int[] quickSort(int arr[], int low,int high)
+    {
+        if (low < high)
+        {
+        /* pi is partitioning index, arr[pi] is now
+           at right place */
+            int pi = partition(arr, low, high);
+
+            quickSort(arr, low, pi - 1);  // Before pi
+            quickSort(arr, pi + 1, high); // After pi
         }
     }
+    partition (int arr[],int low,int high)
+    {
+        // pivot (Element to be placed at right position)
+        int pivot = arr[high];
 
-    public int [] mergeSort(int [] array){
+        int i = (low - 1)  // Index of smaller element
+
+        for (int j = low; j <= high- 1; j++)
+        {
+            // If current element is smaller than or
+            // equal to pivot
+            if (arr[j] <= pivot)
+            {
+                 i++;    // increment index of smaller element
+                int swap arr[i] && arr[j];
+            }
+        }
+        int swap arr[i + 1] && arr[high]);
+        return (i + 1);
+    }
+
+
+
+
+        void heapSort(int arr[], int n)
+        {
+            // Build heap (rearrange array)
+            for (int i = n / 2 - 1; i >= 0; i--)
+                heapify(arr, n, i);
+
+            // One by one extract an element from heap
+            for (int i=n-1; i>=0; i--)
+            {
+                // Move current root to end
+                swap(arr[0], arr[i]);
+
+                // call max heapify on the reduced heap
+                heapify(arr, i, 0);
+            }
+        }
+
+        public int [] bucketSort(int [] array){
         int [] list = array;
         //implement here
-        
-        
+        vector<Integer> b[array.length];
+
+        // 2) Put array elements in different buckets
+        for (int i=0; i<array.length; i++)
+        {
+            int bi = array.length*array[i]; // Index in bucket
+            b[bi].push_back(array[i]);
+        }
+
+        // 3) Sort individual buckets
+        for (int i=0; i<array.length; i++)
+            sort(b[i].begin(), b[i].end());
+
+        // 4) Concatenate all buckets into arr[]
+        int index = 0;
+        for (int i = 0; i < array.length; i++)
+            for (int j = 0; j < b[i].size(); j++)
+                array[index++] = b[i][j];
+
+
+
 
         return list;
     }
     
-
-    public int [] quickSort(int [] array){
+    public int [] shellSort(int [] array, int n){
         int [] list = array;
         //implement here
-        
-        
+        for (int gap = n/2; gap > 0; gap /= 2)
+        {
+            for (int i = gap; i < n; i += 1)
+            {
+                int temp = array[i];
 
-        return list;
-    }
-    
-    public int [] heapSort(int [] array){
-        int [] list = array;
-        //implement here
-        
-        
+                int j;
+                for (j = i; j >= gap && array[j - gap] > temp; j -= gap)
+                    array[j] = array[j - gap];
 
-        return list;
-    }
+                array[j] = temp;
+            }
+        }
+        return 0;
 
-
-    public int [] bucketSort(int [] array){
-        int [] list = array;
-        //implement here
-        
-        
-
-        return list;
-    }
-    
-    public int [] shellSort(int [] array){
-        int [] list = array;
-        //implement here
-        
-        
 
         return list;
     }

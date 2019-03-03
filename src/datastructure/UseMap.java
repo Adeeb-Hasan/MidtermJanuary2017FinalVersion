@@ -1,5 +1,9 @@
 package datastructure;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class UseMap {
 
 	public static void main(String[] args) {
@@ -10,7 +14,23 @@ public class UseMap {
 		 *
 		 * Use any databases[MongoDB, Oracle, MySql] to store data and retrieve data.
 		 */
+			ArrayList<String> cityOfUSA = new ArrayList<String>();
+			cityOfUSA.add("NY");
+			cityOfUSA.add("PA");
 
+			ArrayList<String> cityOfBD = new ArrayList<String>();
+			cityOfBD.add("Rajshahi");
+			cityOfBD.add("Dhaka");
+
+			Map<String, ArrayList<String>> hashmap2 = new LinkedHashMap<String, ArrayList<String>>();
+			hashmap2.put("Bangladesh", cityOfBD);
+			hashmap2.put("USA", cityOfUSA);
+
+			for(Map.Entry<String, ArrayList<String>> country2:hashmap2.entrySet()) {
+				System.out.println(country2.getKey()+ country2.getValue());
+			}
+
+		}
 	}
 
-}
+

@@ -1,5 +1,7 @@
 package codelab.status;
 
+import parser.Student;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,10 +11,12 @@ public class CsvReader {
 
     public static void main(String[] args) {
         /*
+
          Coma Separated Value(CSV) of your CodeLab status is downloaded and it parsed.
          Based on number of solution you solved, message is generated for you.
          You need to find the average score of the class.
          */
+
 
         String csvFilePath = System.getProperty("user.dir") + "/src/codelab/status/roster-file-03-02-2019.csv";
         String line = "";
@@ -20,7 +24,22 @@ public class CsvReader {
         BufferedReader br = null;
         List<Trainee> roster = new ArrayList<Trainee>();
 
-        try {
+      //Class Average
+        BufferedReader br1 = new BufferedReader(new FileReader(csvFilePath));
+        int studentNumber = 0;
+        while ((line = br1.readLine()) != null) {
+            if(studentNumber == 0) {
+                studentNumber++;
+                continue;
+                int sum =0;
+                for(Trainee student:roster) {
+                    sum += student.getNumberOfExercisesSolved();
+                }
+            int average = sum/studentNumber;
+                System.out.println(sum);
+
+
+                try {
             br = new BufferedReader(new FileReader(csvFilePath));
             int lineNumber = 0;
             while ((line = br.readLine()) != null) {
@@ -61,6 +80,13 @@ public class CsvReader {
                 System.out.print("Shame on You !-->                           ");
                 System.out.println(student.getFirstName() + " " + student.getLastName() + " " + student.getNumberOfExercisesSolved());
             }
+        }
+
+
+
+
+
+        }
         }
 
     }
